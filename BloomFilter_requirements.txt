@@ -1,0 +1,12 @@
+Requirements
+
+1.) Class that stores the array of bits
+	- must have a method for setting a given bit
+
+2.) Class that returns a hash given a dictionary word
+
+3.) Class that imports the dictionary to a local data structure
+
+4.) Class that hashes each imported word and then sets each corresponding bit in the array of bits
+
+5.) Class that checks a given word (high-level UI)
