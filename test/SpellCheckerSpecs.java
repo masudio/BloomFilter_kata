@@ -10,7 +10,7 @@ import org.mockito.InOrder;
 
 public class SpellCheckerSpecs
 {
-	private SpellChecker sut;
+	private ICheckSpelling sut;
 
 	@Test
 	public void test()

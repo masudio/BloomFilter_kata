@@ -1,17 +1,37 @@
 
-public class SpellChecker
+public class SpellChecker implements ICheckSpelling
 {
 
+	private IAmAFilter filter;
+	private IAmAHashFunction hashFunction;
+	private IAmADictionary dictionary;
+
+	/*
+	 * dictionary must be filled already.
+	 */
 	public SpellChecker(IAmADictionary dictionary,
             IAmAHashFunction hashFunction,IAmAFilter filter)
     {
-	    // TODO Auto-generated constructor stub
+		this.dictionary = dictionary;
+		this.hashFunction = hashFunction;
+		this.filter = filter;
+		
+		initialize();
     }
+	
+	private void initialize()
+	{
+		String hash = null;
+		for(Object word : dictionary)
+        {
+	        hash = hashFunction.hash((String)word);
+	        filter.add(hash);
+        }
+	}
 
 	public boolean isWord(String text)
     {
-	    // TODO Auto-generated method stub
-	    return false;
+		String hash = hashFunction.hash(text);
+		return filter.insideSet(hash);
     }
-
 }
