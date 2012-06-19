@@ -1,3 +1,4 @@
+package unit;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
@@ -6,6 +7,11 @@ import static org.mockito.Mockito.stub;
 import java.util.Iterator;
 
 import org.junit.Test;
+import org.masudio.spellchecker.IAmADictionary;
+import org.masudio.spellchecker.IAmAFilter;
+import org.masudio.spellchecker.IAmAHashFunction;
+import org.masudio.spellchecker.ICheckSpelling;
+import org.masudio.spellchecker.SpellChecker;
 import org.mockito.InOrder;
 
 public class SpellCheckerSpecs

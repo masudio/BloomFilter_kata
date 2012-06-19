@@ -1,3 +1,4 @@
+package org.masudio.spellchecker;
 import java.util.Scanner;
 
 public class Program

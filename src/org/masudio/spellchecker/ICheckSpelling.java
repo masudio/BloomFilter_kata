@@ -1,3 +1,4 @@
+package org.masudio.spellchecker;
 
 public interface ICheckSpelling
 {
