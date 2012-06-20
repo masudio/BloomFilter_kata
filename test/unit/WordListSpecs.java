@@ -1,6 +1,7 @@
 package unit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 
@@ -27,4 +28,20 @@ public class WordListSpecs
 		assertEquals("AA's", result3);
 	}
 
+	@Test
+	public void shouldStoreANumberOfWords()
+	{
+		sut = new WordList("/usr/share/dict/words");
+		Iterator<String> toTest = sut.iterator();
+		int numberOfWords = 0;
+
+		while(toTest.hasNext())
+		{
+			toTest.next();
+			numberOfWords++;
+		}
+		
+		System.out.println(numberOfWords);
+		assertTrue(0 != numberOfWords);
+	}
 }
