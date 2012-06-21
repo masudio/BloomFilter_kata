@@ -20,5 +20,4 @@ public class HashFunctionSpecs
 		
 		assertEquals(expectedResult, result);
 	}
-
 }
