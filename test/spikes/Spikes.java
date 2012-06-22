@@ -35,7 +35,7 @@ public class Spikes
 	}
 
 	@Test
-	public void digestToHexString()
+	public void byteArrayToHexString()
 	{
 		try
 		{
@@ -43,22 +43,44 @@ public class Spikes
 			digest.update("test".getBytes());
 			byte[] bytes = digest.digest();
 			
-			StringBuilder hexString = new StringBuilder();
+			hexString = new StringBuilder();
 			String hex = "";
 			for(byte b : bytes)
             {
 				hex = Integer.toHexString(0xFF & b);
-//				if(hex.length() == 1) hexString.append('0');
+				if(hex.length() == 1) hexString.append('0');
 	            hexString.append(hex);
             }
 			
 			System.out.println("hexString: " + hexString.toString());
-			System.out.println(hexString.length());
+			System.out.println("hexString length: " + hexString.length());
+			
+			hexStringToByteArray_andBackToSeeIfItsTheSame();
 		}
 		catch(NoSuchAlgorithmException e)
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	private StringBuilder hexString;
+	
+	public void hexStringToByteArray_andBackToSeeIfItsTheSame()
+	{
+		System.out.println("other method\n");
+		System.out.println("hexString: " + hexString.toString());
+		byte[] bytes = hexString.toString().getBytes();
+		String hex = "";
+		for(byte b : bytes)
+        {
+			hex = Integer.toHexString(0xFF & b);
+			if(hex.length() == 1) hexString.append('0');
+	        hexString.append(hex);
+        }
+		
+		String hexStringOutput = hexString.substring(0, 32);
+		System.out.println("hexString: " + hexStringOutput.toString());
+		System.out.println("hexString length: " + hexStringOutput.length());
 	}
 	
 	@Test

@@ -1,9 +1,8 @@
-package unit;
+package org.masudio.spellchecker;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.masudio.spellchecker.IAmAHashFunction;
 
 public class MD5HashFunction implements IAmAHashFunction
 {
@@ -30,8 +29,19 @@ public class MD5HashFunction implements IAmAHashFunction
 	@Override
 	public String hash(String wordToCheck)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		digest.update(wordToCheck.getBytes());
+		byte[] bytes = digest.digest();
+		
+		StringBuilder hexString = new StringBuilder();
+		String hex = "";
+		for(byte b : bytes)
+        {
+			hex = Integer.toHexString(0xFF & b);
+			if(hex.length() == 1) hexString.append('0');
+	        hexString.append(hex);
+        }
+		
+		return hexString.toString();
 	}
 
 }

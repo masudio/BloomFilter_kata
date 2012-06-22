@@ -41,7 +41,7 @@ public class WordListSpecs
 			numberOfWords++;
 		}
 		
-		System.out.println(numberOfWords);
+//		System.out.println(numberOfWords);
 		assertTrue(0 != numberOfWords);
 	}
 }
