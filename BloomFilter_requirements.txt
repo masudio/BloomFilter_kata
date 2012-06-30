@@ -8,5 +8,13 @@ Requirements
 3.) Class that imports the dictionary to a local data structure
 
 4.) Class that hashes each imported word and then sets each corresponding bit in the array of bits
+	- first digest.update(bytes)
+	- then convert to hexString
+	- then hexString.getBytes()
+	- then convert to hexString2
 
 5.) Class that checks a given word (high-level UI)
+
+
+
+
