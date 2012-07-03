@@ -22,7 +22,7 @@ public class SpellChecker implements ICheckSpelling
 	
 	private void initialize()
 	{
-		String hash = null;
+		byte[] hash = null;
 		for(Object word : dictionary)
         {
 	        hash = hashFunction.hash((String)word);
@@ -32,7 +32,7 @@ public class SpellChecker implements ICheckSpelling
 
 	public boolean isWord(String text)
     {
-		String hash = hashFunction.hash(text);
+		byte[] hash = hashFunction.hash(text);
 		return filter.insideSet(hash);
     }
 }

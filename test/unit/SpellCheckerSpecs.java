@@ -26,7 +26,7 @@ public class SpellCheckerSpecs
 		IAmAFilter mockFilter = mock(IAmAFilter.class);
 		Iterator mockIterator = mock(Iterator.class);
 		String wordToCheck = "fire";
-		String returnedHash = "aHash";
+		byte[] returnedHash = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 		boolean expectedResult = true;
 		stub(mockDictionary.iterator()).toReturn(mockIterator);
 		stub(mockIterator.hasNext()).toReturn(true).toReturn(false);

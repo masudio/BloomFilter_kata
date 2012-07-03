@@ -3,15 +3,10 @@ package unit;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.stub;
-
-import java.util.Iterator;
 
 import org.junit.Test;
 import org.masudio.spellchecker.BloomFilter;
-import org.masudio.spellchecker.IAmADictionary;
 import org.masudio.spellchecker.IAmAFilter;
-import org.masudio.spellchecker.IAmAHashFunction;
 
 public class FilterSpecs
 {
@@ -20,7 +15,7 @@ public class FilterSpecs
 	@Test
 	public void whenAskedIfWordIsInSet_andItIs_shouldReturnTrue()
 	{
-		String returnedHash = "1f8f6bcd4621d373cade4e832627b4t8";
+		byte[] returnedHash = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 		sut = new BloomFilter();
 		
 		sut.add(returnedHash);
@@ -32,11 +27,11 @@ public class FilterSpecs
 	@Test
 	public void whenAskedIfWordIsInSet_andItIsNot_shouldReturnFalse()
 	{
-		String returnedHash = "1f8f6bcd4621d373cade4e832627b4t8";
+		byte[] returnedHash = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 		sut = new BloomFilter();
 		
 		sut.add(returnedHash);
-		boolean result = sut.insideSet("123456789abcdef123456789abcdef12");
+		boolean result = sut.insideSet(new byte[]{1,11,3,4,3,2,1,2,3,4,5,4,22,4,3,4});
 		
 		assertFalse(result);
 	}

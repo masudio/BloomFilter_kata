@@ -14,11 +14,11 @@ public class HashFunctionSpecs
 	public void whenGivenAString_shouldReturnItsMD5HashValue()
 	{
 		String wordToCheck = "test";
-		String expectedResult = "098f6bcd4621d373cade4e832627b4f6";
+		byte[] expectedResult = new byte[]{9,-113,107,-51,70,33,-45,115,-54,-34,78,-125,38,39,-76,-10};
 		sut = new MD5HashFunction();
 		
-		String result = sut.hash(wordToCheck);
+		byte[] result = sut.hash(wordToCheck);
 		
-		assertEquals(expectedResult, result);
+		assertArrayEquals(expectedResult, result);
 	}
 }

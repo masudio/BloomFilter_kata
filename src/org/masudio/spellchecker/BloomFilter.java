@@ -25,37 +25,48 @@ public class BloomFilter implements IAmAFilter
 	}
 
 	@Override
-	public boolean insideSet(String hash)
+	public boolean insideSet(byte[] hash)
 	{
-		byte[] bytes = hash.getBytes();
-		
-    	for(int i = 0; i < 32; i+=4)
-    	{
-    		long hashValue = byteArrayToLong(Arrays.copyOfRange(bytes, i, i + 4));
-    		
-    		long index = hashValue / 8;
-    		int offset = (int)(hashValue % 8);
-    		
-    		if(0 == (filter[(int)index] & (1 << offset)))
-    			return false;
-    	}
+		try
+		{
+			if(hash.length != 16)
+				throw new Exception("query word's hash is not the right length");
+			
+			for(int i = 0; i < 16; i+=4)
+			{
+				long hashValue = byteArrayToLong(Arrays.copyOfRange(hash, i, i + 4));
+				hashValue = Math.abs(hashValue);
+
+				long index = hashValue / 8;
+				int offset = (int)(hashValue % 8);
+
+				byte element = filter[(int)index];
+				element &= (1 << offset);
+				if(0 == element)
+					return false;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.exit(1);
+		}
 		return true;
 	}
 
 	@Override
-	public void add(String hash)
+	public void add(byte[] hash)
 	{
-		byte[] bytes = hash.getBytes();
-
 		try
 		{
-			if(bytes.length != 32)
+			if(hash.length != 16)
 				throw new Exception("dictionary word's hash is not the right length");
 
-			for(int i = 0; i < 32; i+=4)
+			for(int i = 0; i < 16; i+=4)
 			{
-				long hashValue = byteArrayToLong(Arrays.copyOfRange(bytes, i, i + 4));
-
+				long hashValue = byteArrayToLong(Arrays.copyOfRange(hash, i, i + 4));
+				hashValue = Math.abs(hashValue);
+				
 				long index = hashValue / 8;
 				int offset = (int)(hashValue % 8);
 

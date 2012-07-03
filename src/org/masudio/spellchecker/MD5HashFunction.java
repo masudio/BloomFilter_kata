@@ -27,21 +27,12 @@ public class MD5HashFunction implements IAmAHashFunction
 	}
 	
 	@Override
-	public String hash(String wordToCheck)
+	public byte[] hash(String wordToCheck)
 	{
 		digest.update(wordToCheck.getBytes());
 		byte[] bytes = digest.digest();
 		
-		StringBuilder hexString = new StringBuilder();
-		String hex = "";
-		for(byte b : bytes)
-        {
-			hex = Integer.toHexString(0xFF & b);
-			if(hex.length() == 1) hexString.append('0');
-	        hexString.append(hex);
-        }
-		
-		return hexString.toString();
+		return bytes;
 	}
 
 }

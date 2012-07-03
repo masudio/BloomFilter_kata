@@ -9,8 +9,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import org.junit.Test;
+import org.masudio.spellchecker.BloomFilter;
 import org.masudio.spellchecker.IAmAHashFunction;
 import org.masudio.spellchecker.MD5HashFunction;
+import org.masudio.spellchecker.SpellChecker;
+import org.masudio.spellchecker.WordList;
 
 public class Spikes
 {
@@ -131,18 +134,18 @@ public class Spikes
 	@Test
 	public void testHash()
 	{
-		IAmAHashFunction function = new MD5HashFunction();
-		String hexString = function.hash("test");
-		byte[] bytes = hexString.getBytes();
-		String hexString2 = function.hash("test");
-		byte[] bytes2 = hexString.getBytes();
-		
-		assertEquals(hexString, hexString2);
-		assertEquals(bytes.length,bytes2.length);
-		for(int i = 0; i < bytes.length; i++)
-		{
-			assertEquals(bytes[i],bytes2[i]);
-		}
+//		IAmAHashFunction function = new MD5HashFunction();
+//		String hexString = function.hash("test");
+//		byte[] bytes = hexString.getBytes();
+//		String hexString2 = function.hash("test");
+//		byte[] bytes2 = hexString.getBytes();
+//		
+//		assertEquals(hexString, hexString2);
+//		assertEquals(bytes.length,bytes2.length);
+//		for(int i = 0; i < bytes.length; i++)
+//		{
+//			assertEquals(bytes[i],bytes2[i]);
+//		}
 	}
 	
 //	@Test
@@ -156,4 +159,32 @@ public class Spikes
 //	        System.out.println(b);
 //        }
 //	}
+	
+	@Test
+	public void testWhatBits()
+	{
+//		BloomFilter bf = new BloomFilter();
+//		SpellChecker spellChecker = new SpellChecker(new WordList("/usr/share/dict/words"),new MD5HashFunction(), bf);
+//		long load = 0;
+//		
+//		System.out.println("START");
+//		for(int i = 0; i < bf.filter.length; i++)
+//        {
+//			if(bf.filter[i] != 0)
+//			{
+//				System.out.println("(i=" + i + ") = " + Integer.toBinaryString(bf.filter[i]));
+//				load++;
+//			}
+//        }
+//		System.out.println("END");
+//		System.out.println("size of filter: " + bf.filter.length);
+//		System.out.println("load of filter: " + load);
+	}
+	
+	@Test
+	public void testShifting()
+	{
+		String element = Integer.toBinaryString(1 << 3);
+		System.out.println(element);
+	}
 }
